@@ -95,7 +95,7 @@ extension MainWeatherForecastViewController: UITableViewDataSource {
                 dailyWeatherData.count > 0 else {
             return UITableViewCell()
         }
-        cell.setupCell(with: dailyWeatherData[indexPath.row])
+        cell.configure(with: dailyWeatherData[indexPath.row])
         return cell
     }
 }
@@ -104,7 +104,7 @@ extension MainWeatherForecastViewController: UITableViewDataSource {
 
 private extension MainWeatherForecastViewController {
     
-    private func setupUI() {
+    func setupUI() {
         view.backgroundColor = .white
         let safeArea = view.safeAreaLayoutGuide
         let headerView = UIView()
@@ -162,7 +162,7 @@ private extension MainWeatherForecastViewController {
         tableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor).isActive = true
     }
     
-    @objc private func cancelButtonTapped() {
+    @objc func cancelButtonTapped() {
         view.endEditing(true)
     }
 }

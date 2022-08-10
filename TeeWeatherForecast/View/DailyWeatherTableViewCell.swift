@@ -8,7 +8,9 @@
 import UIKit
 import Accessibility
 
-final class DailyWeatherTableViewCell: UITableViewCell, AXCustomContentProvider {
+final class DailyWeatherTableViewCell: UITableViewCell {
+    
+    // MARK: Properties
     
     private var dateLbl: UILabel!
     private var avgTempLbl: UILabel!
@@ -16,10 +18,15 @@ final class DailyWeatherTableViewCell: UITableViewCell, AXCustomContentProvider 
     private var humidityLbl: UILabel!
     private var descriptionLbl: UILabel!
     private var weatherImgView: UIImageView!
+    var accessibilityCustomContent: [AXCustomContent]!
+    
+    // MARK: Lifecycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    // MARK: Initialisers
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -27,6 +34,60 @@ final class DailyWeatherTableViewCell: UITableViewCell, AXCustomContentProvider 
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.setupUI()
+    }
+    
+    func configure(with dailyWeatherData: DailyWeatherData) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = K.app_date_format
+        let date = Date(timeIntervalSince1970: dailyWeatherData.dt)
+        dateLbl.text = String(format: K.app_date_info, dateFormatter.string(from: date))
+        
+        let avgDailyTemperature = Int((dailyWeatherData.temp.min + dailyWeatherData.temp.max) / 2)
+        avgTempLbl.text = String(format: K.app_average_temperature_info, avgDailyTemperature)
+        
+        pressureLbl.text = String(format: K.app_pressure_info, dailyWeatherData.pressure)
+        
+        humidityLbl.text = String(format: K.app_humidity_info, dailyWeatherData.humidity)
+        
+        let description = dailyWeatherData.weather.first?.description ?? ""
+        descriptionLbl.text = String(format: K.app_description_info, description)
+        
+        let imgName = dailyWeatherData.weather.first?.icon ?? ""
+        weatherImgView.image = UIImage(named: imgName)
+    }
+}
+
+// MARK: - AXCustomContentProvider
+
+extension DailyWeatherTableViewCell: AXCustomContentProvider {
+    
+    override var accessibilityLabel: String? {
+        get {
+            let text: String = (dateLbl.text ?? "") + ", "
+                             + (avgTempLbl.text ?? "") + ", "
+                             + (pressureLbl.text ?? "") + ", "
+                             + (humidityLbl.text ?? "") + ", "
+                             + (descriptionLbl.text ?? "")
+            return text
+        }
+        set {}
+    }
+}
+
+// MARK: - Helpers
+
+private extension DailyWeatherTableViewCell {
+    
+    private func buildDynamicLabel() -> UILabel {
+        let label = UILabel()
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
+        label.numberOfLines = 0
+        return label
+    }
+    
+    private func setupUI() {
         contentView.backgroundColor = .systemGray4
         
         weatherImgView = UIImageView()
@@ -73,47 +134,5 @@ final class DailyWeatherTableViewCell: UITableViewCell, AXCustomContentProvider 
         descriptionLbl.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10).isActive = true
         descriptionLbl.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
         descriptionLbl.trailingAnchor.constraint(equalTo: weatherImgView.leadingAnchor, constant: -10).isActive = true
-    }
-    
-    func setupCell(with dailyWeatherData: DailyWeatherData) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = K.app_date_format
-        let date = Date(timeIntervalSince1970: dailyWeatherData.dt)
-        dateLbl.text = String(format: K.app_date_info, dateFormatter.string(from: date))
-        
-        let avgDailyTemperature = Int((dailyWeatherData.temp.min + dailyWeatherData.temp.max) / 2)
-        avgTempLbl.text = String(format: K.app_average_temperature_info, avgDailyTemperature)
-        
-        pressureLbl.text = String(format: K.app_pressure_info, dailyWeatherData.pressure)
-        
-        humidityLbl.text = String(format: K.app_humidity_info, dailyWeatherData.humidity)
-        
-        let description = dailyWeatherData.weather.first?.description ?? ""
-        descriptionLbl.text = String(format: K.app_description_info, description)
-        
-        let imgName = dailyWeatherData.weather.first?.icon ?? ""
-        weatherImgView.image = UIImage(named: imgName)
-    }
-    
-    private func buildDynamicLabel() -> UILabel {
-        let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.adjustsFontForContentSizeCategory = true
-        label.numberOfLines = 0
-        return label
-    }
-    
-    // MARK: - AXCustomContentProvider
-    var accessibilityCustomContent: [AXCustomContent]!
-    override var accessibilityLabel: String? {
-        get {
-            let text: String = (dateLbl.text ?? "") + ", "
-                             + (avgTempLbl.text ?? "") + ", "
-                             + (pressureLbl.text ?? "") + ", "
-                             + (humidityLbl.text ?? "") + ", "
-                             + (descriptionLbl.text ?? "")
-            return text
-        }
-        set {}
     }
 }
