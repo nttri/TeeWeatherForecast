@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol ViewControllerProtocol: class {
+protocol MainWeatherForecastDisplaying: class {
     func onDailyWeatherDataReceived(with dailyWeatherData: [DailyWeatherData])
     func showAlert(with errorType: AppError)
 }
 
-final class ViewController: UIViewController {
+final class MainWeatherForecastViewController: UIViewController {
     
     var presenter:WeatherForecastPresenterProtocol!
     private var searchBar:UISearchBar!
@@ -90,8 +90,9 @@ final class ViewController: UIViewController {
     }
 }
 
-//MARK: ViewControllerProtocol
-extension ViewController: ViewControllerProtocol {
+// MARK: - MainWeatherForecastDisplaying
+
+extension MainWeatherForecastViewController: MainWeatherForecastDisplaying {
     func onDailyWeatherDataReceived(with dailyWeatherData: [DailyWeatherData]) {
         self.dailyWeatherData = dailyWeatherData
         DispatchQueue.main.async {
@@ -109,23 +110,23 @@ extension ViewController: ViewControllerProtocol {
     }
 }
 
-//MARK: UISearchBarDelegate
-extension ViewController: UISearchBarDelegate {
+// MARK: - UISearchBarDelegate
+extension MainWeatherForecastViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let cityName = searchBar.text ?? ""
         self.presenter.startSearch(with: cityName)
     }
 }
 
-//MARK: UITableViewDelegate
-extension ViewController: UITableViewDelegate {
+// MARK: - UITableViewDelegate
+extension MainWeatherForecastViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
-//MARK: UITableViewDataSource
-extension ViewController: UITableViewDataSource {
+// MARK: - UITableViewDataSource
+extension MainWeatherForecastViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dailyWeatherData.count
     }

@@ -103,7 +103,7 @@ final class DailyWeatherTableViewCell: UITableViewCell, AXCustomContentProvider 
         return label
     }
     
-    //MARK: AXCustomContentProvider
+    // MARK: - AXCustomContentProvider
     var accessibilityCustomContent: [AXCustomContent]!
     override var accessibilityLabel: String? {
         get {
