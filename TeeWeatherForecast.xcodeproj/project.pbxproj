@@ -112,14 +112,12 @@
 		22EEAC9928A2C53600995CC9 /* TeeWeatherForecast */ = {
 			isa = PBXGroup;
 			children = (
-				22EEACDA28A3558A00995CC9 /* Shared */,
 				22EEAC9A28A2C53600995CC9 /* AppDelegate.swift */,
 				22EEAC9C28A2C53600995CC9 /* SceneDelegate.swift */,
 				22EEACCB28A34A0600995CC9 /* Helpers */,
-				22EEACD028A34BDA00995CC9 /* Models */,
-				22EEACD628A34C5400995CC9 /* Presenter */,
+				22EEACE128A3991A00995CC9 /* Home */,
 				22EEACCA28A349EF00995CC9 /* Resources */,
-				22EEACD328A34C1100995CC9 /* View */,
+				22EEACDA28A3558A00995CC9 /* Shared */,
 				22EEACA828A2C53700995CC9 /* Info.plist */,
 				22EEACD928A350D700995CC9 /* ToDoList.md */,
 			);
@@ -193,6 +191,16 @@
 				22EEACDB28A355AC00995CC9 /* Display.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		22EEACE128A3991A00995CC9 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				22EEACD028A34BDA00995CC9 /* Models */,
+				22EEACD328A34C1100995CC9 /* View */,
+				22EEACD628A34C5400995CC9 /* Presenter */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
