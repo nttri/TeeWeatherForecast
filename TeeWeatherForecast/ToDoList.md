@@ -1,12 +1,11 @@
 [To do list]
 Apply stubs
-Separate Network as a framework
 Unit tests
 UI tests
 
 
 [Processing]
-Apply Result type on API response
+Separate Network as a framework
 
 
 [Done list]
@@ -16,3 +15,4 @@ Add resources
 Handle weather forecast data then show on UI
 Handle search feature then show on UI
 Apply MVP
+Apply Result type on API calls
