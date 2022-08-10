@@ -16,7 +16,7 @@ final class MainWeatherForecastViewController: UIViewController {
     
     // MARK: Properties
     
-    var presenter:WeatherForecastPresenterProtocol!
+    var presenter:MainWeatherForecastPresenting!
     private var searchBar:UISearchBar!
     private var cancelButton:UIButton!
     private var tableView:UITableView!
@@ -28,7 +28,7 @@ final class MainWeatherForecastViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        presenter.viewDidLoad()
+        presenter.displayDidLoad()
     }
 }
 
