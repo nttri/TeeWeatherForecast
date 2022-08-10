@@ -11,13 +11,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let windowScene = (scene as? UIWindowScene) else { return }
+    func scene(
+        _ scene: UIScene,
+        willConnectTo session: UISceneSession,
+        options connectionOptions: UIScene.ConnectionOptions
+    ) {
+        guard let windowScene = (scene as? UIWindowScene) else {
+            return
+        }
         
-        let window = UIWindow(windowScene: windowScene)
-            window.rootViewController = ViewController()
-            window.makeKeyAndVisible()
-            self.window = window
+        let viewController = ViewController()
+        let presenter = WeatherForecastPresenter()
+        
+        viewController.presenter = presenter
+        presenter.view = viewController
+        
+        self.window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        self.window?.windowScene = windowScene
+        self.window?.rootViewController = viewController
+        self.window?.overrideUserInterfaceStyle = .light
+        self.window?.makeKeyAndVisible()
     }
 }
 
