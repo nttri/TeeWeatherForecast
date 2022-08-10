@@ -14,7 +14,7 @@ protocol WeatherForecastPresenterProtocol: class {
 
 final class WeatherForecastPresenter: WeatherForecastPresenterProtocol {
     
-    weak var view: ViewControllerProtocol?
+    weak var view: MainWeatherForecastDisplaying?
     
     func viewDidLoad() {
         self.loadDailyWeatherData(with: K.app_default_cityname)
