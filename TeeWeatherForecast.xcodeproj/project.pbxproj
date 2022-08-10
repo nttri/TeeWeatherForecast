@@ -57,6 +57,7 @@
 		22EEACD128A34BED00995CC9 /* WeatherForecast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecast.swift; sourceTree = "<group>"; };
 		22EEACD428A34C3200995CC9 /* DailyWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyWeatherTableViewCell.swift; sourceTree = "<group>"; };
 		22EEACD728A34C6000995CC9 /* WeatherForecastPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForecastPresenter.swift; sourceTree = "<group>"; };
+		22EEACD928A350D700995CC9 /* ToDoList.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ToDoList.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +116,7 @@
 				22EEACCA28A349EF00995CC9 /* Resources */,
 				22EEACD328A34C1100995CC9 /* View */,
 				22EEACA828A2C53700995CC9 /* Info.plist */,
+				22EEACD928A350D700995CC9 /* ToDoList.md */,
 			);
 			path = TeeWeatherForecast;
 			sourceTree = "<group>";
