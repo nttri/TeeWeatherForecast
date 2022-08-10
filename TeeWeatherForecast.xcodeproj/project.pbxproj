@@ -21,6 +21,7 @@
 		22EEACD528A34C3200995CC9 /* DailyWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEACD428A34C3200995CC9 /* DailyWeatherTableViewCell.swift */; };
 		22EEACD828A34C6000995CC9 /* MainWeatherForecastPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEACD728A34C6000995CC9 /* MainWeatherForecastPresenter.swift */; };
 		22EEACDC28A355AC00995CC9 /* Display.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEACDB28A355AC00995CC9 /* Display.swift */; };
+		22EEACE028A3647600995CC9 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22EEACDF28A3647600995CC9 /* Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,7 @@
 		22EEACD728A34C6000995CC9 /* MainWeatherForecastPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWeatherForecastPresenter.swift; sourceTree = "<group>"; };
 		22EEACD928A350D700995CC9 /* ToDoList.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = ToDoList.md; sourceTree = "<group>"; };
 		22EEACDB28A355AC00995CC9 /* Display.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Display.swift; sourceTree = "<group>"; };
+		22EEACDF28A3647600995CC9 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				22EEACD128A34BED00995CC9 /* WeatherForecast.swift */,
+				22EEACDF28A3647600995CC9 /* Errors.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				22EEACCF28A34A3800995CC9 /* NetworkManager.swift in Sources */,
 				22EEACDC28A355AC00995CC9 /* Display.swift in Sources */,
 				22EEACD228A34BED00995CC9 /* WeatherForecast.swift in Sources */,
+				22EEACE028A3647600995CC9 /* Errors.swift in Sources */,
 				22EEAC9D28A2C53600995CC9 /* SceneDelegate.swift in Sources */,
 				22EEACD528A34C3200995CC9 /* DailyWeatherTableViewCell.swift in Sources */,
 				22EEACCD28A34A1700995CC9 /* Constants.swift in Sources */,

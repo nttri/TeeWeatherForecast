@@ -30,7 +30,7 @@ extension MainWeatherForecastPresenter: MainWeatherForecastPresenting {
     
     func startSearch(with cityName: String) {
         guard isValid(cityName: cityName) else {
-            return handleOn(errorType: .cityNameTooShort)
+            return handleFailure(with: CityInfoError.cityNameTooShort)
         }
         self.loadDailyWeatherData(with: cityName)
     }
@@ -55,20 +55,21 @@ private extension MainWeatherForecastPresenter {
             URLQueryItem(name: K.app_api_field_appid, value: K.app_api_default_appid),
             URLQueryItem(name: K.app_api_field_units, value: K.app_api_default_units),
         ]
-
+        
         NetworkManager.sharedInstance.requestWeatherForecastInfo(
             with: urlComponent.url!,
-            completionHandler: { [weak self] weatherDataList, appError in
-                if let error = appError {
-                    self?.handleOn(errorType: error)
-                    return
+            completion: { [weak self] result in
+                switch result {
+                case .success(let data):
+                    self?.view?.onDailyWeatherDataReceived(with: data)
+                case .failure(let error):
+                    self?.handleFailure(with: error)
                 }
-                self?.view?.onDailyWeatherDataReceived(with: weatherDataList)
             }
         )
     }
     
-    private func handleOn(errorType: AppError) {
-        self.view?.showAlert(with: errorType)
+    private func handleFailure<T: AppError>(with error: T) {
+        self.view?.showAlert(with: error)
     }
 }

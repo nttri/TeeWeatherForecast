@@ -9,7 +9,7 @@ import UIKit
 
 protocol MainWeatherForecastDisplaying: Display {
     func onDailyWeatherDataReceived(with dailyWeatherData: [DailyWeatherData])
-    func showAlert(with errorType: AppError)
+    func showAlert<T: AppError>(with error: T)
 }
 
 final class MainWeatherForecastViewController: UIViewController {
@@ -43,10 +43,10 @@ extension MainWeatherForecastViewController: MainWeatherForecastDisplaying {
         }
     }
     
-    func showAlert(with errorType: AppError) {
+    func showAlert<T: AppError>(with error: T) {
         let alert = UIAlertController(
             title: K.app_alert_title,
-            message: errorType.description,
+            message: error.description,
             preferredStyle: .alert
         )
         let action = UIAlertAction(

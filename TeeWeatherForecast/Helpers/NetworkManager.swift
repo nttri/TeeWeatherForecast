@@ -7,7 +7,12 @@
 
 import Foundation
 
+typealias WeatherForecastInfoCompletion = (Result<[DailyWeatherData], WeatherForecastRequestError>) -> Void
+
 final class NetworkManager {
+    
+    // MARK: Properties
+    
     static let sharedInstance = NetworkManager()
     
     private lazy var session: URLSession = {
@@ -16,23 +21,25 @@ final class NetworkManager {
         return URLSession(configuration: configuration)
     }()
     
+    // MARK: Initialisers
+    
     private init() {}
     
     func requestWeatherForecastInfo(
         with url: URL,
-        completionHandler: @escaping (_ data: [DailyWeatherData], _ errorType: AppError?) -> Void
+        completion: @escaping WeatherForecastInfoCompletion
     ) {
         let task = session.dataTask(with: url) { data, _, error in
             guard let sData = data, error == nil else {
-                completionHandler([], .serverError)
+                completion(.failure(.network))
                 return
             }
             let jsonDecoder = JSONDecoder()
             do {
                 let decodedData = try jsonDecoder.decode(WeatherForecast.self, from: sData)
-                completionHandler(decodedData.list, nil)
+                completion(.success(decodedData.list))
             } catch {
-                completionHandler([], .processDataFailed)
+                completion(.failure(.api))
             }
         }
         task.resume()
