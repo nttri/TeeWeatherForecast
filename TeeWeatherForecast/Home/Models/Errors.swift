@@ -18,9 +18,9 @@ enum CityInfoError: AppError {
     var description: String {
         switch self {
         case .cityNameTooShort:
-            return K.ErrorMessage.app_error_cityname_too_short
+            return K.ErrorMessage.cityname_too_short
         case .cityNotFound:
-            return K.ErrorMessage.app_error_city_not_found
+            return K.ErrorMessage.city_not_found
         }
     }
 }
@@ -32,9 +32,9 @@ enum WeatherForecastRequestError: AppError {
     var description: String {
         switch self {
         case .api:
-            return K.ErrorMessage.app_error_process_data_fail
+            return K.ErrorMessage.process_data_fail
         case .network:
-            return K.ErrorMessage.app_error_server_fail
+            return K.ErrorMessage.server_fail
         }
     }
 }

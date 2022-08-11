@@ -14,7 +14,7 @@ protocol MainWeatherForecastDisplaying: Display {
 
 final class MainWeatherForecastViewController: UIViewController {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     var presenter:MainWeatherForecastPresenting!
     private var searchBar:UISearchBar!
@@ -23,7 +23,7 @@ final class MainWeatherForecastViewController: UIViewController {
     private var dailyWeatherData:[DailyWeatherData] = []
     private let kCellName:String = "DailyWeatherTableViewCell"
     
-    // MARK: Lifecycle
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,7 +130,7 @@ private extension MainWeatherForecastViewController {
         cancelButton.setTitle(K.InApp.app_button_cancel, for: .normal)
         cancelButton.setTitleColor(.systemBlue, for: .normal)
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
-        cancelButton.accessibilityHint = K.AppMessage.app_cancel_btn_accessibility_hint
+        cancelButton.accessibilityHint = K.AppMessage.searchbar_cancel_accessibility_hint
         headerView.addSubview(cancelButton)
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
@@ -140,7 +140,7 @@ private extension MainWeatherForecastViewController {
         searchBar = UISearchBar()
         searchBar.searchBarStyle = .minimal
         searchBar.placeholder = K.InApp.app_searchbar_placeholder
-        searchBar.accessibilityHint = K.AppMessage.app_searchbar_accessibility_hint
+        searchBar.accessibilityHint = K.AppMessage.searchbar_accessibility_hint
         searchBar.delegate = self
         headerView.addSubview(searchBar)
         searchBar.translatesAutoresizingMaskIntoConstraints = false
