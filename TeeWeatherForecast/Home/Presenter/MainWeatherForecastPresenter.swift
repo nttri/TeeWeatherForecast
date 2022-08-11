@@ -14,10 +14,15 @@ protocol MainWeatherForecastPresenting: AnyObject {
 
 final class MainWeatherForecastPresenter {
     
-    // MARK: Properties
+    // MARK: - Properties
     
-    weak var view: MainWeatherForecastDisplaying?
+    private weak var display: MainWeatherForecastDisplaying?
     
+    // MARK: - Initialisers
+    
+    init(display: MainWeatherForecastDisplaying) {
+        self.display = display
+    }
 }
 
 // MARK: - WeatherForecastPresenting
@@ -61,7 +66,7 @@ private extension MainWeatherForecastPresenter {
             completion: { [weak self] result in
                 switch result {
                 case .success(let data):
-                    self?.view?.onDailyWeatherDataReceived(with: data)
+                    self?.display?.onDailyWeatherDataReceived(with: data)
                 case .failure(let error):
                     self?.handleFailure(with: error)
                 }
@@ -70,6 +75,6 @@ private extension MainWeatherForecastPresenter {
     }
     
     private func handleFailure<T: AppError>(with error: T) {
-        self.view?.showAlert(with: error)
+        self.display?.showAlert(with: error)
     }
 }

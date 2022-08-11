@@ -21,10 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         
         let viewController = MainWeatherForecastViewController()
-        let presenter = MainWeatherForecastPresenter()
-        
-        viewController.presenter = presenter
-        presenter.view = viewController
+        viewController.presenter = MainWeatherForecastPresenter(display: viewController)
         
         self.window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         self.window?.windowScene = windowScene
