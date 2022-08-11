@@ -25,7 +25,7 @@ final class MainWeatherForecastPresenter {
 extension MainWeatherForecastPresenter: MainWeatherForecastPresenting {
     
     func displayDidLoad() {
-        self.loadDailyWeatherData(with: K.app_default_cityname)
+        self.loadDailyWeatherData(with: K.InApp.app_default_cityname)
     }
     
     func startSearch(with cityName: String) {
@@ -41,19 +41,19 @@ extension MainWeatherForecastPresenter: MainWeatherForecastPresenting {
 private extension MainWeatherForecastPresenter {
     
     private func isValid(cityName: String) -> Bool {
-        return cityName.count >= K.app_min_cityname_length
+        return cityName.count >= K.InApp.app_min_cityname_length
     }
     
     private func loadDailyWeatherData(with cityName:String) {
-        guard var urlComponent = URLComponents(string: K.app_api_url) else {
+        guard var urlComponent = URLComponents(string: K.Networking.app_api_url) else {
             return
         }
         
         urlComponent.queryItems = [
-            URLQueryItem(name: K.app_api_field_cityname, value: cityName),
-            URLQueryItem(name: K.app_api_field_cnt, value: "\(K.app_api_default_cnt)"),
-            URLQueryItem(name: K.app_api_field_appid, value: K.app_api_default_appid),
-            URLQueryItem(name: K.app_api_field_units, value: K.app_api_default_units),
+            URLQueryItem(name: K.Networking.app_api_field_cityname, value: cityName),
+            URLQueryItem(name: K.Networking.app_api_field_cnt, value: "\(K.Networking.app_api_default_cnt)"),
+            URLQueryItem(name: K.Networking.app_api_field_appid, value: K.Networking.app_api_default_appid),
+            URLQueryItem(name: K.Networking.app_api_field_units, value: K.Networking.app_api_default_units),
         ]
         
         NetworkManager.sharedInstance.requestWeatherForecastInfo(

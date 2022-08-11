@@ -39,19 +39,19 @@ final class DailyWeatherTableViewCell: UITableViewCell {
     
     func configure(with dailyWeatherData: DailyWeatherData) {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = K.app_date_format
+        dateFormatter.dateFormat = K.InApp.app_date_format
         let date = Date(timeIntervalSince1970: dailyWeatherData.dt)
-        dateLbl.text = String(format: K.app_date_info, dateFormatter.string(from: date))
+        dateLbl.text = String(format: K.InApp.app_date_info, dateFormatter.string(from: date))
         
         let avgDailyTemperature = Int((dailyWeatherData.temp.min + dailyWeatherData.temp.max) / 2)
-        avgTempLbl.text = String(format: K.app_average_temperature_info, avgDailyTemperature)
+        avgTempLbl.text = String(format: K.InApp.app_average_temperature_info, avgDailyTemperature)
         
-        pressureLbl.text = String(format: K.app_pressure_info, dailyWeatherData.pressure)
+        pressureLbl.text = String(format: K.InApp.app_pressure_info, dailyWeatherData.pressure)
         
-        humidityLbl.text = String(format: K.app_humidity_info, dailyWeatherData.humidity)
+        humidityLbl.text = String(format: K.InApp.app_humidity_info, dailyWeatherData.humidity)
         
         let description = dailyWeatherData.weather.first?.description ?? ""
-        descriptionLbl.text = String(format: K.app_description_info, description)
+        descriptionLbl.text = String(format: K.InApp.app_description_info, description)
         
         let imgName = dailyWeatherData.weather.first?.icon ?? ""
         weatherImgView.image = UIImage(named: imgName)

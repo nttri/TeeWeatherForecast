@@ -45,12 +45,12 @@ extension MainWeatherForecastViewController: MainWeatherForecastDisplaying {
     
     func showAlert<T: AppError>(with error: T) {
         let alert = UIAlertController(
-            title: K.app_alert_title,
+            title: K.InApp.app_alert_title,
             message: error.description,
             preferredStyle: .alert
         )
         let action = UIAlertAction(
-            title: K.app_ok_button,
+            title: K.InApp.app_ok_button,
             style: .default,
             handler: nil
         )
@@ -116,7 +116,7 @@ private extension MainWeatherForecastViewController {
         headerView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor).isActive = true
         
         let titleLabel = UILabel()
-        titleLabel.text = K.app_title
+        titleLabel.text = K.InApp.app_title
         titleLabel.font = .boldSystemFont(ofSize: 18)
         titleLabel.textColor = .black
         titleLabel.textAlignment = .center
@@ -127,10 +127,10 @@ private extension MainWeatherForecastViewController {
         titleLabel.topAnchor.constraint(equalTo: headerView.topAnchor, constant: 10).isActive = true
         
         cancelButton = UIButton()
-        cancelButton.setTitle(K.app_button_cancel, for: .normal)
+        cancelButton.setTitle(K.InApp.app_button_cancel, for: .normal)
         cancelButton.setTitleColor(.systemBlue, for: .normal)
         cancelButton.addTarget(self, action: #selector(cancelButtonTapped), for: .touchUpInside)
-        cancelButton.accessibilityHint = K.app_cancel_btn_accessibility_hint
+        cancelButton.accessibilityHint = K.AppMessage.app_cancel_btn_accessibility_hint
         headerView.addSubview(cancelButton)
         cancelButton.translatesAutoresizingMaskIntoConstraints = false
         cancelButton.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10).isActive = true
@@ -139,8 +139,8 @@ private extension MainWeatherForecastViewController {
         
         searchBar = UISearchBar()
         searchBar.searchBarStyle = .minimal
-        searchBar.placeholder = K.app_searchbar_placeholder
-        searchBar.accessibilityHint = K.app_searchbar_accessibility_hint
+        searchBar.placeholder = K.InApp.app_searchbar_placeholder
+        searchBar.accessibilityHint = K.AppMessage.app_searchbar_accessibility_hint
         searchBar.delegate = self
         headerView.addSubview(searchBar)
         searchBar.translatesAutoresizingMaskIntoConstraints = false
