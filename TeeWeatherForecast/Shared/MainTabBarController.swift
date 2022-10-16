@@ -68,13 +68,13 @@ private extension MainTabBarController {
         
         let weatherForecastNavigationController = createNavController(
             for: weatherForecastViewController,
-            title: "Weather Forecast",
-            image: UIImage(systemName: "house")!
+            title: K.InApp.weather_forecast_title,
+            image: UIImage(systemName: "cloud.sun.fill")!
         )
         let airPollutionNavigationController = createNavController(
             for: airPollutionViewController,
-            title: "Air Pollution",
-            image: UIImage(systemName: "cloud")!
+            title: K.InApp.air_pollution_title,
+            image: UIImage(systemName: "aqi.medium")!
         )
         
         viewControllers = [

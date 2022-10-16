@@ -12,7 +12,6 @@ struct K {
     // MARK: - In-app
     
     struct InApp {
-        static let app_title: String                         = "Weather Forecast"
         static let app_searchbar_placeholder: String         = "City name (Eg: London, Paris)"
         static let app_button_cancel: String                 = "Cancel"
         static let app_min_cityname_length: Int              = 3
@@ -24,6 +23,8 @@ struct K {
         static let app_description_info: String              = "Description: %@"
         static let app_ok_button: String                     = "OK"
         static let app_alert_title: String                   = "Alert"
+        static let weather_forecast_title: String            = "Weather Forecast"
+        static let air_pollution_title: String               = "Air Pollution"
     }
     
     // MARK: - Networking

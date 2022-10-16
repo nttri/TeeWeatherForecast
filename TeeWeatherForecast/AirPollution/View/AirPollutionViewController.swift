@@ -86,7 +86,7 @@ private extension AirPollutionViewController {
         contentView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -10).isActive = true
         
         let titleLabel = UILabel()
-        titleLabel.text = "Air pollution"
+        titleLabel.text = K.InApp.air_pollution_title
         titleLabel.font = .boldSystemFont(ofSize: 18)
         titleLabel.textColor = .black
         titleLabel.textAlignment = .center

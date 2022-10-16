@@ -118,7 +118,7 @@ private extension WeatherForecastViewController {
         headerView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor).isActive = true
         
         let titleLabel = UILabel()
-        titleLabel.text = K.InApp.app_title
+        titleLabel.text = K.InApp.weather_forecast_title
         titleLabel.font = .boldSystemFont(ofSize: 18)
         titleLabel.textColor = .black
         titleLabel.textAlignment = .center
