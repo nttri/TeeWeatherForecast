@@ -120,9 +120,8 @@
 			children = (
 				22EEAC9A28A2C53600995CC9 /* AppDelegate.swift */,
 				22EEAC9C28A2C53600995CC9 /* SceneDelegate.swift */,
-				22EEACCB28A34A0600995CC9 /* Helpers */,
 				22EEACE328A4AF4C00995CC9 /* AirPollution */,
-				22EEACE128A3991A00995CC9 /* Home */,
+				22EEACE128A3991A00995CC9 /* WeatherForecast */,
 				22EEACCA28A349EF00995CC9 /* Resources */,
 				22EEACDA28A3558A00995CC9 /* Shared */,
 				22EEACA828A2C53700995CC9 /* Info.plist */,
@@ -157,20 +156,10 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		22EEACCB28A34A0600995CC9 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				22EEACCC28A34A1700995CC9 /* Constants.swift */,
-				22EEACCE28A34A3800995CC9 /* NetworkManager.swift */,
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		22EEACD028A34BDA00995CC9 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				22EEACD128A34BED00995CC9 /* WeatherForecast.swift */,
-				22EEACDF28A3647600995CC9 /* Errors.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -178,8 +167,8 @@
 		22EEACD328A34C1100995CC9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				22EEAC9E28A2C53600995CC9 /* MainWeatherForecastViewController.swift */,
 				22EEACD428A34C3200995CC9 /* DailyWeatherTableViewCell.swift */,
+				22EEAC9E28A2C53600995CC9 /* MainWeatherForecastViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -195,19 +184,22 @@
 		22EEACDA28A3558A00995CC9 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				22EEACCC28A34A1700995CC9 /* Constants.swift */,
 				22EEACDB28A355AC00995CC9 /* Display.swift */,
+				22EEACDF28A3647600995CC9 /* Errors.swift */,
+				22EEACCE28A34A3800995CC9 /* NetworkManager.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
 		};
-		22EEACE128A3991A00995CC9 /* Home */ = {
+		22EEACE128A3991A00995CC9 /* WeatherForecast */ = {
 			isa = PBXGroup;
 			children = (
 				22EEACD028A34BDA00995CC9 /* Models */,
-				22EEACD328A34C1100995CC9 /* View */,
 				22EEACD628A34C5400995CC9 /* Presenter */,
+				22EEACD328A34C1100995CC9 /* View */,
 			);
-			path = Home;
+			path = WeatherForecast;
 			sourceTree = "<group>";
 		};
 		22EEACE328A4AF4C00995CC9 /* AirPollution */ = {

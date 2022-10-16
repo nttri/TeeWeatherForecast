@@ -28,3 +28,17 @@ struct DailyWeatherData: Decodable {
 struct WeatherForecast: Decodable {
     let list: [DailyWeatherData]
 }
+
+enum CityInfoError: AppError {
+    case cityNameTooShort
+    case cityNotFound
+    
+    var description: String {
+        switch self {
+        case .cityNameTooShort:
+            return K.ErrorMessage.cityname_too_short
+        case .cityNotFound:
+            return K.ErrorMessage.city_not_found
+        }
+    }
+}

@@ -11,20 +11,6 @@ protocol AppError: Error, Equatable {
     var description: String { get }
 }
 
-enum CityInfoError: AppError {
-    case cityNameTooShort
-    case cityNotFound
-    
-    var description: String {
-        switch self {
-        case .cityNameTooShort:
-            return K.ErrorMessage.cityname_too_short
-        case .cityNotFound:
-            return K.ErrorMessage.city_not_found
-        }
-    }
-}
-
 enum NetworkingError: AppError {
     case api
     case network
