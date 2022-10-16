@@ -9,6 +9,8 @@ import Foundation
 
 struct K {
     
+    // MARK: - In-app
+    
     struct InApp {
         static let app_title: String                         = "Weather Forecast"
         static let app_searchbar_placeholder: String         = "City name (Eg: London, Paris)"
@@ -23,6 +25,8 @@ struct K {
         static let app_ok_button: String                     = "OK"
         static let app_alert_title: String                   = "Alert"
     }
+    
+    // MARK: - Networking
     
     struct Networking {
         static let base_url: String              = "https://api.openweathermap.org"
@@ -42,12 +46,16 @@ struct K {
         static let api_default_units: String     = "metric"
     }
     
+    // MARK: - ErrorMessage
+    
     struct ErrorMessage {
         static let cityname_too_short: String = "City name must have at least 3 characters!"
         static let city_not_found: String     = "Can't found this city!"
         static let process_data_fail: String  = "Failed on data processing!"
         static let server_fail: String        = "Connect to server failed.\n Please try again later!"
     }
+    
+    // MARK: - AppMessage
     
     struct AppMessage {
         static let searchbar_cancel_accessibility_hint: String = "Hint: Cancel editing search bar."

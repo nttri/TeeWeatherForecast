@@ -12,7 +12,7 @@ typealias AirPollutionInfoCompletion = (Result<AirPollution, NetworkingError>) -
 
 final class NetworkManager {
     
-    // MARK: Properties
+    // MARK: - Properties
     
     static let sharedInstance = NetworkManager()
     
@@ -22,7 +22,7 @@ final class NetworkManager {
         return URLSession(configuration: configuration)
     }()
     
-    // MARK: Initialisers
+    // MARK: - Initialisers
     
     private init() {}
     

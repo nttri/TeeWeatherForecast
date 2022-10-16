@@ -25,7 +25,9 @@ final class MainWeatherForecastPresenter {
     }
 }
 
-// MARK: - WeatherForecastPresenting
+// MARK: - Conformance
+
+// MARK: WeatherForecastPresenting
 
 extension MainWeatherForecastPresenter: MainWeatherForecastPresenting {
     

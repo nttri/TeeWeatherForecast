@@ -32,7 +32,9 @@ final class MainWeatherForecastViewController: UIViewController {
     }
 }
 
-// MARK: - MainWeatherForecastDisplaying
+// MARK: - Conformance
+
+// MARK: MainWeatherForecastDisplaying
 
 extension MainWeatherForecastViewController: MainWeatherForecastDisplaying {
     
@@ -62,7 +64,7 @@ extension MainWeatherForecastViewController: MainWeatherForecastDisplaying {
     }
 }
 
-// MARK: - UISearchBarDelegate
+// MARK: UISearchBarDelegate
 
 extension MainWeatherForecastViewController: UISearchBarDelegate {
     
@@ -72,7 +74,7 @@ extension MainWeatherForecastViewController: UISearchBarDelegate {
     }
 }
 
-// MARK: - UITableViewDelegate
+// MARK: UITableViewDelegate
 
 extension MainWeatherForecastViewController: UITableViewDelegate {
     
@@ -81,7 +83,7 @@ extension MainWeatherForecastViewController: UITableViewDelegate {
     }
 }
 
-// MARK: - UITableViewDataSource
+// MARK: UITableViewDataSource
 
 extension MainWeatherForecastViewController: UITableViewDataSource {
     
@@ -100,7 +102,7 @@ extension MainWeatherForecastViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - Helpers
+// MARK: - Configuration
 
 private extension MainWeatherForecastViewController {
     

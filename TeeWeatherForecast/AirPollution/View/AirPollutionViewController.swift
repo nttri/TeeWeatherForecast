@@ -69,7 +69,7 @@ extension AirPollutionViewController: AirPollutionDisplaying {
     }
 }
 
-// MARK: - Helpers
+// MARK: - Configuration
 
 private extension AirPollutionViewController {
     
