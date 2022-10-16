@@ -5,7 +5,6 @@ UI tests
 
 
 [Processing]
-Add Tabbar
 Separate Network as a framework/module
 
 
@@ -13,8 +12,9 @@ Separate Network as a framework/module
 Create project
 Remove storyboard
 Add resources
-Handle weather forecast data then show on UI
-Handle search feature then show on UI
+Add WeatherForecast feature
+Add Search feature in WeatherForecast
 Apply MVP++
 Apply Result type on API calls
-Add air pollution screen
+Add AirPollution feature
+Add Tabbar
