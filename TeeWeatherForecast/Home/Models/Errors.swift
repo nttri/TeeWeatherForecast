@@ -25,7 +25,7 @@ enum CityInfoError: AppError {
     }
 }
 
-enum WeatherForecastRequestError: AppError {
+enum NetworkingError: AppError {
     case api
     case network
     
