@@ -7,20 +7,20 @@
 
 import Foundation
 
-protocol MainWeatherForecastPresenting: AnyObject {
+protocol WeatherForecastPresenting: AnyObject {
     func displayDidLoad()
     func startSearch(with cityName:String)
 }
 
-final class MainWeatherForecastPresenter {
+final class WeatherForecastPresenter {
     
     // MARK: - Properties
     
-    private weak var display: MainWeatherForecastDisplaying?
+    private weak var display: WeatherForecastDisplaying?
     
     // MARK: - Initialisers
     
-    init(display: MainWeatherForecastDisplaying) {
+    init(display: WeatherForecastDisplaying) {
         self.display = display
     }
 }
@@ -29,7 +29,7 @@ final class MainWeatherForecastPresenter {
 
 // MARK: WeatherForecastPresenting
 
-extension MainWeatherForecastPresenter: MainWeatherForecastPresenting {
+extension WeatherForecastPresenter: WeatherForecastPresenting {
     
     func displayDidLoad() {
         self.loadDailyWeatherData(with: K.Networking.api_default_cityname)
@@ -45,7 +45,7 @@ extension MainWeatherForecastPresenter: MainWeatherForecastPresenting {
 
 // MARK: - Helpers
 
-private extension MainWeatherForecastPresenter {
+private extension WeatherForecastPresenter {
     
     private func isValid(cityName: String) -> Bool {
         return cityName.count >= K.InApp.app_min_cityname_length

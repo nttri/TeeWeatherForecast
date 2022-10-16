@@ -20,12 +20,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             return
         }
         
-        let viewController = MainWeatherForecastViewController()
-        viewController.presenter = MainWeatherForecastPresenter(display: viewController)
+        let mainTabBarController = MainTabBarController()
         
         self.window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         self.window?.windowScene = windowScene
-        self.window?.rootViewController = viewController
+        self.window?.rootViewController = mainTabBarController
         self.window?.overrideUserInterfaceStyle = .light
         self.window?.makeKeyAndVisible()
     }

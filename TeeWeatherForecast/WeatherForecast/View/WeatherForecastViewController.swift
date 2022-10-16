@@ -7,16 +7,16 @@
 
 import UIKit
 
-protocol MainWeatherForecastDisplaying: Display {
+protocol WeatherForecastDisplaying: Display {
     func onDailyWeatherDataReceived(with dailyWeatherData: [DailyWeatherData])
     func showAlert<T: AppError>(with error: T)
 }
 
-final class MainWeatherForecastViewController: UIViewController {
+final class WeatherForecastViewController: UIViewController {
     
     // MARK: - Properties
     
-    var presenter:MainWeatherForecastPresenting!
+    var presenter:WeatherForecastPresenting!
     private var searchBar:UISearchBar!
     private var cancelButton:UIButton!
     private var tableView:UITableView!
@@ -34,9 +34,9 @@ final class MainWeatherForecastViewController: UIViewController {
 
 // MARK: - Conformance
 
-// MARK: MainWeatherForecastDisplaying
+// MARK: WeatherForecastDisplaying
 
-extension MainWeatherForecastViewController: MainWeatherForecastDisplaying {
+extension WeatherForecastViewController: WeatherForecastDisplaying {
     
     func onDailyWeatherDataReceived(with dailyWeatherData: [DailyWeatherData]) {
         self.dailyWeatherData = dailyWeatherData
@@ -66,7 +66,7 @@ extension MainWeatherForecastViewController: MainWeatherForecastDisplaying {
 
 // MARK: UISearchBarDelegate
 
-extension MainWeatherForecastViewController: UISearchBarDelegate {
+extension WeatherForecastViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let cityName = searchBar.text ?? ""
@@ -76,7 +76,7 @@ extension MainWeatherForecastViewController: UISearchBarDelegate {
 
 // MARK: UITableViewDelegate
 
-extension MainWeatherForecastViewController: UITableViewDelegate {
+extension WeatherForecastViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -85,7 +85,7 @@ extension MainWeatherForecastViewController: UITableViewDelegate {
 
 // MARK: UITableViewDataSource
 
-extension MainWeatherForecastViewController: UITableViewDataSource {
+extension WeatherForecastViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dailyWeatherData.count
@@ -104,7 +104,7 @@ extension MainWeatherForecastViewController: UITableViewDataSource {
 
 // MARK: - Configuration
 
-private extension MainWeatherForecastViewController {
+private extension WeatherForecastViewController {
     
     func setupUI() {
         view.backgroundColor = .white

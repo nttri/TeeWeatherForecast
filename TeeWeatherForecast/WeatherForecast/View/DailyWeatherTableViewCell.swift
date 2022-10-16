@@ -36,6 +36,26 @@ final class DailyWeatherTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setupUI()
     }
+    
+    func configure(with dailyWeatherData: DailyWeatherData) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = K.InApp.app_date_format
+        let date = Date(timeIntervalSince1970: dailyWeatherData.dt)
+        dateLbl.text = String(format: K.InApp.app_date_info, dateFormatter.string(from: date))
+        
+        let avgDailyTemperature = Int((dailyWeatherData.temp.min + dailyWeatherData.temp.max) / 2)
+        avgTempLbl.text = String(format: K.InApp.app_average_temperature_info, avgDailyTemperature)
+        
+        pressureLbl.text = String(format: K.InApp.app_pressure_info, dailyWeatherData.pressure)
+        
+        humidityLbl.text = String(format: K.InApp.app_humidity_info, dailyWeatherData.humidity)
+        
+        let description = dailyWeatherData.weather.first?.description ?? ""
+        descriptionLbl.text = String(format: K.InApp.app_description_info, description)
+        
+        let imgName = dailyWeatherData.weather.first?.icon ?? ""
+        weatherImgView.image = UIImage(named: imgName)
+    }
 }
 
 // MARK: - AXCustomContentProvider
@@ -59,27 +79,7 @@ extension DailyWeatherTableViewCell: AXCustomContentProvider {
 
 private extension DailyWeatherTableViewCell {
     
-    func configure(with dailyWeatherData: DailyWeatherData) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = K.InApp.app_date_format
-        let date = Date(timeIntervalSince1970: dailyWeatherData.dt)
-        dateLbl.text = String(format: K.InApp.app_date_info, dateFormatter.string(from: date))
-        
-        let avgDailyTemperature = Int((dailyWeatherData.temp.min + dailyWeatherData.temp.max) / 2)
-        avgTempLbl.text = String(format: K.InApp.app_average_temperature_info, avgDailyTemperature)
-        
-        pressureLbl.text = String(format: K.InApp.app_pressure_info, dailyWeatherData.pressure)
-        
-        humidityLbl.text = String(format: K.InApp.app_humidity_info, dailyWeatherData.humidity)
-        
-        let description = dailyWeatherData.weather.first?.description ?? ""
-        descriptionLbl.text = String(format: K.InApp.app_description_info, description)
-        
-        let imgName = dailyWeatherData.weather.first?.icon ?? ""
-        weatherImgView.image = UIImage(named: imgName)
-    }
-    
-    private func buildDynamicLabel() -> UILabel {
+    func buildDynamicLabel() -> UILabel {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
@@ -87,7 +87,7 @@ private extension DailyWeatherTableViewCell {
         return label
     }
     
-    private func setupUI() {
+    func setupUI() {
         contentView.backgroundColor = .systemGray4
         
         weatherImgView = UIImageView()
