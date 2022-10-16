@@ -5,8 +5,8 @@ UI tests
 
 
 [Processing]
-Add air pollution screen
-Separate Network as a framework
+Add Tabbar
+Separate Network as a framework/module
 
 
 [Done list]
@@ -15,5 +15,6 @@ Remove storyboard
 Add resources
 Handle weather forecast data then show on UI
 Handle search feature then show on UI
-Apply MVP
+Apply MVP++
 Apply Result type on API calls
+Add air pollution screen
