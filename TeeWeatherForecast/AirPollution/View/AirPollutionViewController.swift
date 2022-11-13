@@ -18,11 +18,11 @@ final class AirPollutionViewController: UIViewController {
     
     var presenter:AirPollutionPresenting!
     
-    private var o3IndexLabel: UILabel!
-    private var no2IndexLabel: UILabel!
-    private var coIndexLabel: UILabel!
-    private var pm25IndexLabel: UILabel!
-    private var pm10IndexLabel: UILabel!
+    private var o3IndexView: AirPollutionSingleIndexView!
+    private var no2IndexView: AirPollutionSingleIndexView!
+    private var coIndexView: AirPollutionSingleIndexView!
+    private var pm25IndexView: AirPollutionSingleIndexView!
+    private var pm10IndexView: AirPollutionSingleIndexView!
     private var aqiLabel: UILabel!
     
     // MARK: - Lifecycle
@@ -44,11 +44,11 @@ extension AirPollutionViewController: AirPollutionDisplaying {
         guard let data: AirPollutionData = airPollutionData.list.first else {
             return
         }
-        o3IndexLabel.text = "O3: \(data.components.o3)"
-        no2IndexLabel.text = "NO2: \(data.components.no2)"
-        coIndexLabel.text = "CO: \(data.components.co)"
-        pm25IndexLabel.text = "PM 2.5: \(data.components.pm2_5)"
-        pm10IndexLabel.text = "PM 10: \(data.components.pm10)"
+        o3IndexView.updateView(with: .o3(value: data.components.o3))
+        no2IndexView.updateView(with: .no2(value: data.components.no2))
+        coIndexView.updateView(with: .co(value: data.components.co))
+        pm25IndexView.updateView(with: .pm2_5(value: data.components.pm2_5))
+        pm10IndexView.updateView(with: .pm10(value: data.components.pm10))
         aqiLabel.text = "AQI: \(data.main.aqi)"
     }
     
@@ -74,80 +74,63 @@ extension AirPollutionViewController: AirPollutionDisplaying {
 private extension AirPollutionViewController {
     
     func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .systemGray5
+        
+        let screenSize: CGRect = UIScreen.main.bounds
+        let vScreenWidth: CGFloat = screenSize.width > screenSize.height ? screenSize.height : screenSize.width
+        let contentWidth: CGFloat = vScreenWidth * 0.6
         let safeArea = view.safeAreaLayoutGuide
         let contentView = UIView()
-        contentView.backgroundColor = .orange
+        contentView.backgroundColor = .systemGray4
+        contentView.layer.cornerRadius = contentWidth * 0.08
+        contentView.layer.borderColor = UIColor.black.cgColor
+        contentView.layer.borderWidth = 1
+        contentView.layer.masksToBounds = true
         view.addSubview(contentView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        contentView.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: 10).isActive = true
-        contentView.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor, constant: 20).isActive = true
-        contentView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20).isActive = true
-        contentView.bottomAnchor.constraint(equalTo: safeArea.bottomAnchor, constant: -10).isActive = true
+        contentView.centerXAnchor.constraint(equalTo: safeArea.centerXAnchor).isActive = true
+        contentView.centerYAnchor.constraint(equalTo: safeArea.centerYAnchor).isActive = true
+        contentView.widthAnchor.constraint(equalToConstant: contentWidth).isActive = true
         
-        let titleLabel = UILabel()
-        titleLabel.text = K.InApp.air_pollution_title
-        titleLabel.font = .boldSystemFont(ofSize: 18)
-        titleLabel.textColor = .black
-        titleLabel.textAlignment = .center
-        titleLabel.isAccessibilityElement = false
-        contentView.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10).isActive = true
+        // O3
+        o3IndexView = AirPollutionSingleIndexView()
+        contentView.addSubview(o3IndexView)
+        o3IndexView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15).isActive = true
+        o3IndexView.widthAnchor.constraint(equalToConstant: contentWidth).isActive = true
         
-        o3IndexLabel = UILabel()
-        o3IndexLabel.font = .preferredFont(forTextStyle: .body)
-        o3IndexLabel.textColor = .black
-        o3IndexLabel.textAlignment = .center
-        contentView.addSubview(o3IndexLabel)
-        o3IndexLabel.translatesAutoresizingMaskIntoConstraints = false
-        o3IndexLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        o3IndexLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
+        // NO2
+        no2IndexView = AirPollutionSingleIndexView()
+        contentView.addSubview(no2IndexView)
+        no2IndexView.topAnchor.constraint(equalTo: o3IndexView.bottomAnchor, constant: 15).isActive = true
+        no2IndexView.widthAnchor.constraint(equalToConstant: contentWidth).isActive = true
         
-        no2IndexLabel = UILabel()
-        no2IndexLabel.font = .preferredFont(forTextStyle: .body)
-        no2IndexLabel.textColor = .black
-        no2IndexLabel.textAlignment = .center
-        contentView.addSubview(no2IndexLabel)
-        no2IndexLabel.translatesAutoresizingMaskIntoConstraints = false
-        no2IndexLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        no2IndexLabel.bottomAnchor.constraint(equalTo: o3IndexLabel.topAnchor, constant: -10).isActive = true
+        // CO
+        coIndexView = AirPollutionSingleIndexView()
+        contentView.addSubview(coIndexView)
+        coIndexView.topAnchor.constraint(equalTo: no2IndexView.bottomAnchor, constant: 15).isActive = true
+        coIndexView.widthAnchor.constraint(equalToConstant: contentWidth).isActive = true
         
-        coIndexLabel = UILabel()
-        coIndexLabel.font = .preferredFont(forTextStyle: .body)
-        coIndexLabel.textColor = .black
-        coIndexLabel.textAlignment = .center
-        contentView.addSubview(coIndexLabel)
-        coIndexLabel.translatesAutoresizingMaskIntoConstraints = false
-        coIndexLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        coIndexLabel.bottomAnchor.constraint(equalTo: no2IndexLabel.topAnchor, constant: -10).isActive = true
-
-        pm25IndexLabel = UILabel()
-        pm25IndexLabel.font = .preferredFont(forTextStyle: .body)
-        pm25IndexLabel.textColor = .black
-        pm25IndexLabel.textAlignment = .center
-        contentView.addSubview(pm25IndexLabel)
-        pm25IndexLabel.translatesAutoresizingMaskIntoConstraints = false
-        pm25IndexLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        pm25IndexLabel.topAnchor.constraint(equalTo: o3IndexLabel.bottomAnchor, constant: 10).isActive = true
+        // PM 2.5
+        pm25IndexView = AirPollutionSingleIndexView()
+        contentView.addSubview(pm25IndexView)
+        pm25IndexView.topAnchor.constraint(equalTo: coIndexView.bottomAnchor, constant: 15).isActive = true
+        pm25IndexView.widthAnchor.constraint(equalToConstant: contentWidth).isActive = true
         
-        pm10IndexLabel = UILabel()
-        pm10IndexLabel.font = .preferredFont(forTextStyle: .body)
-        pm10IndexLabel.textColor = .black
-        pm10IndexLabel.textAlignment = .center
-        contentView.addSubview(pm10IndexLabel)
-        pm10IndexLabel.translatesAutoresizingMaskIntoConstraints = false
-        pm10IndexLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        pm10IndexLabel.topAnchor.constraint(equalTo: pm25IndexLabel.bottomAnchor, constant: 10).isActive = true
+        // PM 10
+        pm10IndexView = AirPollutionSingleIndexView()
+        contentView.addSubview(pm10IndexView)
+        pm10IndexView.topAnchor.constraint(equalTo: pm25IndexView.bottomAnchor, constant: 15).isActive = true
+        pm10IndexView.widthAnchor.constraint(equalToConstant: contentWidth).isActive = true
         
+        // AQI
         aqiLabel = UILabel()
-        aqiLabel.font = .boldSystemFont(ofSize: 16)
+        aqiLabel.font = .boldSystemFont(ofSize: 25)
         aqiLabel.textColor = .black
         aqiLabel.textAlignment = .center
         contentView.addSubview(aqiLabel)
         aqiLabel.translatesAutoresizingMaskIntoConstraints = false
         aqiLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor).isActive = true
-        aqiLabel.topAnchor.constraint(equalTo: pm10IndexLabel.bottomAnchor, constant: 10).isActive = true
+        aqiLabel.topAnchor.constraint(equalTo: pm10IndexView.bottomAnchor, constant: 24).isActive = true
+        aqiLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24).isActive = true
     }
 }
